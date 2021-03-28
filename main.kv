@@ -1,0 +1,85 @@
+#import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+<SearchResultBox>:
+	tnailUrl: ''
+	vTitle: ''
+	cName: ''
+	vidid: ''
+	size_hint_y: None
+	GridLayout:
+		spacing: 2
+		rows: 4
+		size_hint_y: None
+		MDBoxLayout:
+			md_bg_color: 1,0,0,1
+			orientation: 'vertical'
+			size_hint_y: None
+			height: root.width * 0.75
+			MyImage:
+				source: root.tnailUrl
+				on_release: app.download(root.vidid)
+			
+		MDLabel:
+			markup: True
+			size_hint_y: None
+			font_style: "H5"
+			height:  self.texture_size[1]
+			text: "[b]"+root.vTitle
+
+		MDLabel:
+			text: root.cName
+			size_hint_y: None
+			halign: "center"
+			height: self.texture_size[1]
+
+
+<SearchBox@MDCard>:
+	orientation: 'vertical'
+	size_hint_y: None
+	padding: 20
+	BoxLayout:
+		padding: [15, 0, 0, 0]
+		orientation: 'vertical'
+		size_hint_y: None
+		MDProgressBar:
+		    id: progress
+		    color: 0,0,1,1
+	        type: "determinate"
+			pos_hint: {'center_y': 0.9} 
+		GridLayout:
+			spacing: 20
+			cols: 2
+			MDTextField:
+				id: query
+				mode: "rectangle"
+				hint_text: "Search Videos On Youtube"
+			MDFlatButton:
+				text: "Search"
+				on_release: app.populate(query.text)
+ScreenManager:
+	HomeScreen:
+		name: 'home_screen'
+		id: home_screen
+
+<HomeScreen>
+	MDBoxLayout:
+		orientation: 'vertical'
+		MDToolbar:
+			id: toolbar
+			title: 'YouTube Video Downloader'
+			elevation: 0
+		SearchBox:
+			id: box
+		ScrollView:
+			MDList:
+				id: results
+				spacing: (0, root.width * 0.75 + 25)
+				
+	MDSpinner:
+		id: spinner
+		size_hint: None, None
+        size: dp(54), dp(54)
+		pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+		active: False
+
+
