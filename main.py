@@ -29,7 +29,7 @@ else:
 	primary_ext_storage = os.getcwd() + "/Download"
 
 
-DEVELOPER_KEY = "AIzaSyDaZ0oX5UwgiLPmY6cMLwiCiLnX_FIHDfo"
+DEVELOPER_KEY = ""
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
